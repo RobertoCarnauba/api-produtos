@@ -49,10 +49,13 @@ public class ProdutosController {
 	}
 	
 	@GetMapping("/{id}")
-	public ProdutoDTO detalhar(@PathVariable Long id) {
-
-		Produto produto = produtoRepository.getOne(id);
-		return new ProdutoDTO(produto);
+	public ResponseEntity<ProdutoDTO> detalhar(@PathVariable Long id) {
+       Optional<Produto> produto = produtoRepository.findById(id);
+       if(produto.isPresent()) {
+    	   return ResponseEntity.ok(new ProdutoDTO(produto.get()));
+       } else {
+    	   return ResponseEntity.notFound().build();
+       }
 	}
 	
 	@PutMapping("/{id}")

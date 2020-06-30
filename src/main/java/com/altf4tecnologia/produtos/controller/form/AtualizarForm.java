@@ -3,15 +3,17 @@ package com.altf4tecnologia.produtos.controller.form;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Length;
+
 import com.altf4tecnologia.produtos.modelo.Produto;
 import com.altf4tecnologia.produtos.repository.ProdutoRepository;
 
 
 public class AtualizarForm {
 
-    @NotNull @NotEmpty
+    @NotNull @NotEmpty @Length(min = 2)
 	private String prod_nome;
-    @NotNull @NotEmpty
+    @NotNull @NotEmpty 
 	private String prod_descricao;
 	
 	public String getProd_nome() {
